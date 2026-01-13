@@ -7,7 +7,8 @@ terraform {
     }
   }
 }
-#STEP2: DEFINE THE REGION (N. Virginia)
+#STEP2: DEFINE THE REGION (Mumbai)
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
+
 }
