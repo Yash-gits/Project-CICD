@@ -53,11 +53,11 @@ resource "aws_security_group" "my_security_group1" {
 # STEP2: CREATE AN JENKINS EC2 INSTANCE USING EXISTING PEM KEY
 # Note: i. First create a pem-key manually from the AWS console
 #      ii. Copy it in the same directory as your terraform code
-resource "aws_instance" "my_ec2_instance1" {
-  ami                    = "ami-0cf10cdf9fcd62d37"
+resource "aws_instance" "my_ubuntu_instance1" {
+  ami                    = "ami-02b8269d5e85954ef"
   instance_type          = "t2.medium"
   vpc_security_group_ids = [aws_security_group.my_security_group1.id]
-  key_name               = "My_Key" # paste your key-name here, do not use extension '.pem'
+  key_name               = "invalidUSER" # paste your key-name here, do not use extension '.pem'
 
   # Consider EBS volume 30GB
   root_block_device {
@@ -84,8 +84,8 @@ resource "aws_instance" "my_ec2_instance1" {
     # ESTABLISHING SSH CONNECTION WITH EC2
     connection {
       type        = "ssh"
-      private_key = file("./My_Key.pem") # replace with your key-name 
-      user        = "ec2-user"
+      private_key = file("./invalidUSER") # replace with your key-name 
+      user        = "ubuntu"
       host        = self.public_ip
     }
 
@@ -129,7 +129,7 @@ resource "aws_instance" "my_ec2_instance1" {
 
 # STEP3: OUTPUT PUBLIC IP OF EC2 INSTANCE
 output "ACCESS_YOUR_JENKINS_HERE" {
-  value = "http://${aws_instance.my_ec2_instance1.public_ip}:8080"
+  value = "http://${aws_instance.my_ubuntu_instance1.public_ip}:8080"
 }
 
 output "Jenkins_Initial_Password" {
@@ -138,10 +138,11 @@ output "Jenkins_Initial_Password" {
 
 # STEP4: OUTPUT PUBLIC IP OF EC2 INSTANCE
 output "MASTER_SERVER_PUBLIC_IP" {
-  value = aws_instance.my_ec2_instance1.public_ip
+  value = aws_instance.my_ubuntu_instance1.public_ip
 }
 
 # STEP5: OUTPUT PRIVATE IP OF EC2 INSTANCE
 output "MASTER_SERVER_PRIVATE_IP" {
-  value = aws_instance.my_ec2_instance1.private_ip
+  value = aws_instance.my_ubuntu_instance1.private_ip
 }
+
