@@ -78,7 +78,7 @@ resource "aws_instance" "my_ubuntu_instance2" {
   ami                    = "ami-02b8269d5e85954ef"
   instance_type          = "t2.medium" # K8s requires min 2CPU & 4G RAM
   vpc_security_group_ids = [aws_security_group.my_security_group2.id]
-  key_name               = "My_Key" # paste your key-name here, do not use extension '.pem'
+  key_name               = "invalidUSER" # paste your key-name here, do not use extension '.pem'
 
   # Consider EBS volume 30GB
   root_block_device {
@@ -147,4 +147,5 @@ output "NODE_SERVER_PUBLIC_IP" {
 output "NODE_SERVER_PRIVATE_IP" {
   value = aws_instance.my_ubuntu_instance2.private_ip
 }
+
 
