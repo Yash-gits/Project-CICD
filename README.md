@@ -27,9 +27,7 @@ This repository contains the following components:
 
      <Commands to run in 'Master-Server'>
      ssh-keygen             # (this will generate ssh key, press enter when prompted)
-     ~/.ssh/id_rsa
-    ~/.ssh/id_rsa.pub
-    ssh-copy-id ubuntu@<NODE_PRIVATE_IP>
+     ssh-copy-id ubuntu@<NODE_PRIVATE_IP>
 
 
      ssh-copy-id ubuntu@<Node_Private_IP>  # (enter 'yes' when prompted & enter the Node's ubuntu password when prompted)
