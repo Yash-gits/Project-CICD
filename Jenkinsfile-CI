@@ -84,14 +84,16 @@ pipeline {
         }
 
         stage('8. Trivy Image Scan') {
-            // Scan Docker images for vulnerabilities 
-            steps{
-                script { 
-                  def JOB = env.JOB_NAME.toLowerCase() // Convert Jenkins Job name to lower-case
-                  sh "trivy image ${DOCKER_USERNAME}/${JOB}:v${BUILD_NUMBER} > scan.txt"
-                }
-            }
+    steps {
+        script {
+            def JOB = env.JOB_NAME.toLowerCase()
+            sh """
+            trivy image --docker-host unix:///var/run/docker.sock ${JOB}:v${BUILD_NUMBER} > scan.txt
+            """
         }
+    }
+}
+
 
         stage('9. Docker Image Push') {
             // Login to Dockerhub & Push the image to Dockerhub
@@ -117,3 +119,4 @@ pipeline {
         }
     }
 }
+
