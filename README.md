@@ -22,7 +22,8 @@ This repository contains the following components:
      sudo su -
      passwd ubuntu                         # (set password)
      vi /etc/ssh/sshd_config                 # (Allow 'PermitRootLogin yes' & allow 'PasswordAuthentication yes')
-     service sshd restart
+     sudo systemctl restart ssh
+
 
      <Commands to run in 'Master-Server'>
      ssh-keygen                              # (this will generate ssh key, press enter when prompted)
