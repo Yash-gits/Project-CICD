@@ -88,7 +88,7 @@ pipeline {
         script {
             def JOB = env.JOB_NAME.toLowerCase()
             sh """
-            trivy image --docker-host unix:///var/run/docker.sock ${JOB}:v${BUILD_NUMBER} > scan.txt
+            trivy image --docker-host unix:///var/run/docker.sock ${JOB}:${BUILD_NUMBER} > scan.txt
             """
         }
     }
@@ -119,4 +119,5 @@ pipeline {
         }
     }
 }
+
 
