@@ -13,12 +13,14 @@
 on master: 
 ```
 vim docker.sh
-ubuntu@ip-172-31-36-7:~$ sudo chmod a+x docker.sh
-
+sudo chmod a+x docker.sh
+```
 on node: 
 
+```
 vim docker.sh
-ubuntu@ip-172-31-36-7:~$ sudo chmod a+x docker.sh
+sudo chmod a+x docker.sh
+
 
 vim k8s.sh
 sudo chmod a+x k8s
